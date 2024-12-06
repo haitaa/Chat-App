@@ -7,7 +7,7 @@ const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { sendMessage } = useChatStore();
+  const { sendMessage, setIsTyping } = useChatStore();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -47,6 +47,11 @@ const MessageInput = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+    setIsTyping(true);
+  };
+
   return (
     <div className="p-4 w-full">
       {imagePreview && (
@@ -76,7 +81,7 @@ const MessageInput = () => {
             className="w-full input input-bordered rounded-lg input-sm sm:input-md"
             placeholder="Type a message..."
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={handleInputChange}
           />
           <input
             type="file"
