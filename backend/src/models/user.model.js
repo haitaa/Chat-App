@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    isTyping: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
